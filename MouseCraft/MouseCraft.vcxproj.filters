@@ -63,6 +63,9 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="InputManager\InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EventManager\EventManager.h">
@@ -106,6 +109,12 @@
     </ClInclude>
     <ClInclude Include="SoundManager\TrackParams.h">
       <Filter>Header Files\SoundManager</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager\InputParams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager\InputManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

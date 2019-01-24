@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="EventManager\EventManager.cpp" />
+    <ClCompile Include="InputManager\InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -155,6 +156,8 @@
     <ClInclude Include="EventManager\EventManager.h" />
     <ClInclude Include="EventManager\EventName.h" />
     <ClInclude Include="EventManager\ISubscriber.h" />
+    <ClInclude Include="InputManager\InputManager.h" />
+    <ClInclude Include="InputManager\InputParams.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Scene.h" />
