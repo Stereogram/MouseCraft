@@ -7,4 +7,9 @@ enum EventName {
 	COMPONENT_UPDATE,
 	COMPONENT_REMOVED,
 	COMPONENT_ADDED
+    PLAY_SONG,  // used to trigger a BGM track to play
+    PLAY_SOUND, // used to trigger a Sound Effect
+	JOYSTICK,   // joystick/mouse movement/change
+	BUTTON_DOWN,// on button down
+	BUTTON_UP   // on button up
 };

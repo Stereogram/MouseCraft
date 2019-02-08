@@ -129,6 +129,9 @@
     <ClCompile Include="Core\Example\TestDerivedComponent.cpp">
       <Filter>Source Files\Core\Example</Filter>
     </ClCompile>
+    <ClCompile Include="InputManager\InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EventManager\EventManager.h">
@@ -225,6 +228,12 @@
       <Filter>Header Files\Core\Example</Filter>
     </ClInclude>
     <ClInclude Include="Core\ComponentManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager\InputParams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager\InputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
