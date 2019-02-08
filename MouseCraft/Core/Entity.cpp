@@ -1,18 +1,24 @@
 #include "Entity.h"
 #include "OmegaEngine.h"
+#include "../EventManager/EventManager.h"
 #include <iostream>
 
 unsigned int Entity::_curID = 0;
 
-Entity::Entity() :_id(++Entity::_curID) { }
+Entity::Entity() :_id(++Entity::_curID) 
+{ 
+	EventManager::Notify(EventName::ENTITY_CREATED, new TypeParam<Entity*>(this));
+}
 
 Entity::Entity(unsigned int id) : _id(id)
 {
+	// do not notify entity manager
 	std::cout << "Entity created with custom ID: " << _id << std::endl;
 }
 
 Entity::~Entity()
 {
+	EventManager::Notify(EventName::ENTITY_DESTROYED, new TypeParam<Entity*>(this));
 	std::cout << "Entity: " << _id << " destroyed" << std::endl;
 }
 
@@ -27,7 +33,7 @@ void Entity::initialize()
 	{
 		std::cout << "Entity already initialized" << std::endl;
 		
-		for (auto& c : _componentStorage)
+		for (auto& c : _components)
 		{
 			c->initialize();
 		}
@@ -200,7 +206,22 @@ std::vector<Entity*> const& Entity::getChildren() const
 void Entity::addComponent(Component * component)
 {
 	component->setEntity(this);
-	_componentStorage.push_back(component);
+	_components.push_back(component);
+}
+
+void Entity::removeComponent(Component * c)
+{
+	auto it = std::find(_components.begin(), _components.end(), c);
+	if (it != _components.end())
+	{
+		delete(*it);
+		_components.erase(it);
+	}
+	/* 
+	_componentStorage.erase(
+		std::remove(_componentStorage.begin(), _componentStorage.end(), c),
+		_componentStorage.end());
+	*/
 }
 
 void Entity::destroy(bool force)
@@ -210,10 +231,15 @@ void Entity::destroy(bool force)
 	// explicit or implicit instant change
 	if (force || !isInActiveScene())
 	{
+		// destroy all children 
+		for (auto& e : _children)
+			e->destroy(true);
+
 		// TODO: destruct all components 
-		for (auto& c : _componentStorage)
+		for (auto& c : _components)
 			delete(c);
-		
+
+		// Remove from parent and release memory 
 		if (_parent)
 			_parent->removeChild(this->_id);
 
@@ -245,8 +271,6 @@ void Entity::release()
 
 bool Entity::isInActiveScene() const
 {
-	auto f = getScene();
-	auto o = OmegaEngine::instance().getActiveScene();
 	return getScene() && getScene() == OmegaEngine::instance().getActiveScene();
 }
 

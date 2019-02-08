@@ -6,7 +6,9 @@ enum EventName {
     PLAY_SOUND, //used to trigger a Sound Effect
 	COMPONENT_UPDATE,
 	COMPONENT_REMOVED,
-	COMPONENT_ADDED
+	COMPONENT_ADDED,
+	ENTITY_CREATED,
+	ENTITY_DESTROYED,
     PLAY_SONG,  // used to trigger a BGM track to play
     PLAY_SOUND, // used to trigger a Sound Effect
 	JOYSTICK,   // joystick/mouse movement/change
